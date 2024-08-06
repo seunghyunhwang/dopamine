@@ -68,11 +68,8 @@ function calculateFourPillars() {
 
     document.getElementById('result').innerHTML = `
         <p>닉네임: ${nickname}</p>
-        <p>연주: ${yearPillar}</p>
-        <p>월주: ${monthPillar}</p>
-        <p>일주: ${dayPillar}</p>
-        <p>최적의 연주 궁합: ${optimalYearMatch}</p>
-        <p>최적의 월주 궁합: ${optimalMonthMatch}</p>
-        <p>최적의 일주 궁합: ${optimalDayMatch}</p>
+        <p>${nickname}님의 연주: ${yearPillar}</p>
+        <p>${nickname}님의 월주: ${monthPillar}</p>
+        <p>${nickname}님의 일주: ${dayPillar}</p>
     `;
 }
