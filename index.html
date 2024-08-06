@@ -6,26 +6,36 @@
     <title>도파민 충전소 사주 연주월주일주 계산기</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/solarlunar"></script>
 </head>
 <body>
-    <h1>도파민 충전소 사주 연주월주일주 계산기</h1>
-    <label for="nickname">닉네임:</label>
-    <input type="text" id="nickname" name="nickname"><br><br>
+    <div class="container">
+        <h1>도파민 충전소 사주 연주월주일주 계산기</h1>
+        <label for="nickname">닉네임:</label>
+        <input type="text" id="nickname" name="nickname"><br><br>
 
-    <label for="birthdate">생년월일:</label>
-    <input type="date" id="birthdate" name="birthdate" value="1989-01-01" placeholder="YYYY-MM-DD"><br><br>
+        <label for="birthdate">생년월일:</label>
+        <input type="date" id="birthdate" name="birthdate" value="1989-01-01" placeholder="YYYY-MM-DD"><br><br>
 
-    <button onclick="calculateFourPillars()">계산하기</button>
-    <p>생년월일을 입력한 후 계산하기 버튼을 눌러주세요.</p>
+        <label for="calendarType">양력/음력:</label>
+        <select id="calendarType">
+            <option value="solar">양력</option>
+            <option value="lunar">음력</option>
+        </select><br><br>
 
-    <div id="result">
-        <p class="placeholder">닉네임과 생년월일을 입력해주세요.</p>
+        <label for="birthtime">시간:</label>
+        <input type="time" id="birthtime" name="birthtime" value="12:00"><br><br>
+
+        <button onclick="calculateFourPillars()">계산하기</button>
+        <p>생년월일을 입력한 후 계산하기 버튼을 눌러주세요.</p>
+
+        <div id="result">
+            <p class="placeholder">닉네임과 생년월일을 입력해주세요.</p>
+        </div>
     </div>
-
     <footer>
-        <p>&copy; 2024. "Cleaner" in Dopamine Accelerator.</p>
-        <p> All rights reserved.</p>
-<p>Last updated: 2024-08-07 06:21:34</p>
+        <p>&copy; 2024. "Cleaner" in Dopamine Accelerator. All rights reserved.</p>
+<p>Last updated: 2024-08-07 07:14:41</p>
     </footer>
 </body>
 </html>
