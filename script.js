@@ -45,4 +45,24 @@ function calculateFourPillars() {
         <p>월주: ${monthPillar}</p>
         <p>일주: ${dayPillar}</p>
     `;
+
+    // 데이터 저장
+    saveData({ nickname, birthDate });
+}
+
+function saveData(data) {
+    fetch('/api/saveData', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }
