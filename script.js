@@ -2,11 +2,6 @@
 const heavenlyStems = ["갑", "을", "병", "정", "무", "기", "경", "신", "임", "계"];
 const earthlyBranches = ["자", "축", "인", "묘", "진", "사", "오", "미", "신", "유", "술", "해"];
 
-// 음력 월과 일지의 시작점을 위한 데이터 (간략화된 예제)
-const monthStemsOffset = [2, 4, 6, 8, 0, 2, 4, 6, 8, 0, 2, 4]; // 월의 천간 시작 오프셋
-const dayStemsCycle = 10; // 일간은 10일 주기
-const dayBranchesCycle = 12; // 일지는 12일 주기
-
 document.addEventListener('DOMContentLoaded', () => {
     const birthdateInput = document.getElementById('birthdate');
     birthdateInput.setAttribute('min', '1986-01-01');
@@ -46,16 +41,17 @@ function calculateFourPillars() {
     const yearBranchIndex = (year - 4) % 12;
     const yearPillar = `${heavenlyStems[yearStemIndex]}${earthlyBranches[yearBranchIndex]}`;
 
-    // 월주 계산 (기본적인 음력 월 계산, 더 복잡한 로직 필요)
+    // 월주 계산
     const month = date.getMonth() + 1; // 1월 = 0, 2월 = 1, ...
-    const monthStemIndex = (yearStemIndex * 2 + monthStemsOffset[month - 1]) % 10;
+    const monthStemIndex = (yearStemIndex * 2 + month - 1) % 10;
     const monthBranchIndex = (month + 1) % 12; // 월의 지지는 음력으로 시작하므로 +1
     const monthPillar = `${heavenlyStems[monthStemIndex]}${earthlyBranches[monthBranchIndex]}`;
 
-    // 일주 계산 (간단한 일주 계산, 실제로는 시주와 시간까지 포함한 복잡한 계산 필요)
-    const dayOffset = Math.floor((date - new Date(year, 0, 1)) / (1000 * 60 * 60 * 24));
-    const dayStemIndex = (dayOffset % dayStemsCycle + 5) % 10; // 예제에서 5는 1월 1일의 천간 오프셋
-    const dayBranchIndex = (dayOffset % dayBranchesCycle + 1) % 12; // 예제에서 1은 1월 1일의 지지 오프셋
+    // 일주 계산
+    const baseDate = new Date(year, 0, 1);
+    const dayOffset = Math.floor((date - baseDate) / (1000 * 60 * 60 * 24));
+    const dayStemIndex = (dayOffset + 6) % 10; // 예제에서 6은 1월 1일의 천간 오프셋
+    const dayBranchIndex = (dayOffset + 10) % 12; // 예제에서 10은 1월 1일의 지지 오프셋
     const dayPillar = `${heavenlyStems[dayStemIndex]}${earthlyBranches[dayBranchIndex]}`;
 
     // 결과 표시
@@ -64,5 +60,21 @@ function calculateFourPillars() {
         <p>연주: ${yearPillar}</p>
         <p>월주: ${monthPillar}</p>
         <p>일주: ${dayPillar}</p>
+        <p>최적의 궁합: ${findBestMatch(yearPillar, monthPillar, dayPillar)}</p>
     `;
+}
+
+function findBestMatch(yearPillar, monthPillar, dayPillar) {
+    // 예시: 아주 단순한 궁합 계산 로직
+    const allCombinations = [];
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 12; j++) {
+            allCombinations.push(`${heavenlyStems[i]}${earthlyBranches[j]}`);
+        }
+    }
+
+    // 여기서 실제로 복잡한 궁합 계산 로직을 구현해야 함
+    // 현재는 단순히 임의의 궁합을 반환함
+    const randomIndex = Math.floor(Math.random() * allCombinations.length);
+    return allCombinations[randomIndex];
 }

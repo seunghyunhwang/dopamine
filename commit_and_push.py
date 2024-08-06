@@ -7,11 +7,11 @@ def main():
 
     try:
         subprocess.run(commit_command, check=True, shell=True)
-        print("Changes committed successfully.")
+        print("#############Changes committed successfully.")
 
         push_command = 'git push origin main'
         subprocess.run(push_command, check=True, shell=True)
-        print("Changes pushed to remote repository successfully.")
+        print("#############Changes pushed to remote repository successfully.")
 
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
