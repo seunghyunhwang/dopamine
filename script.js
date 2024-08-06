@@ -94,5 +94,9 @@ function calculateFourPillars() {
         <p>${nickname} 님의 월주: ${monthPillar}</p>
         <p>${nickname} 님의 일주: ${dayPillar}</p>
         <p>${nickname} 님의 시주: ${timePillar}</p>
+        <p>최적의 연주 궁합: ${optimalYearMatch}</p>
+        <p>최적의 월주 궁합: ${optimalMonthMatch}</p>
+        <p>최적의 일주 궁합: ${optimalDayMatch}</p>
+        <p>최적의 시주 궁합: ${optimalTimeMatch}</p>
     `;
 }
