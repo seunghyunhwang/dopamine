@@ -22,7 +22,7 @@ function validateDate() {
 
     if (selectedDate < minDate || selectedDate > maxDate) {
         alert('생년월일은 1986년 1월 1일부터 1996년 12월 31일 사이여야 합니다.');
-        birthdateInput.value = '';
+        birthdateInput.value = '1989-01-01';
         document.getElementById('result').innerHTML = `<p class="placeholder">닉네임과 생년월일을 입력해주세요.</p>`;
     }
 }
