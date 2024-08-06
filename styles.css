@@ -19,11 +19,6 @@ input[type="text"], input[type="date"] {
     width: 80%;
     max-width: 300px;
 }
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
 button {
     padding: 10px 20px;
     color: #fff;

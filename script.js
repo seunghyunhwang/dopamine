@@ -7,6 +7,26 @@ const monthStemsOffset = [2, 4, 6, 8, 0, 2, 4, 6, 8, 0, 2, 4]; // 월의 천간 
 const dayStemsCycle = 10; // 일간은 10일 주기
 const dayBranchesCycle = 12; // 일지는 12일 주기
 
+document.addEventListener('DOMContentLoaded', () => {
+    const birthdateInput = document.getElementById('birthdate');
+    birthdateInput.setAttribute('min', '1986-01-01');
+    birthdateInput.setAttribute('max', '1996-12-31');
+    birthdateInput.addEventListener('change', validateDate);
+});
+
+function validateDate() {
+    const birthdateInput = document.getElementById('birthdate');
+    const minDate = new Date(birthdateInput.getAttribute('min'));
+    const maxDate = new Date(birthdateInput.getAttribute('max'));
+    const selectedDate = new Date(birthdateInput.value);
+
+    if (selectedDate < minDate || selectedDate > maxDate) {
+        alert('생년월일은 1986년 1월 1일부터 1996년 12월 31일 사이여야 합니다.');
+        birthdateInput.value = '';
+        document.getElementById('result').innerHTML = `<p class="placeholder">닉네임과 생년월일을 입력해주세요.</p>`;
+    }
+}
+
 function calculateFourPillars() {
     // 입력값 가져오기
     const nickname = document.getElementById('nickname').value;
@@ -45,24 +65,4 @@ function calculateFourPillars() {
         <p>월주: ${monthPillar}</p>
         <p>일주: ${dayPillar}</p>
     `;
-
-    // 데이터 저장
-    saveData({ nickname, birthDate });
-}
-
-function saveData(data) {
-    fetch('/api/saveData', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 }
